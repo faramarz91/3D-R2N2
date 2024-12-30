@@ -1,27 +1,6 @@
 # 3D-R<sup>2</sup>N<sup>2</sup>: 3D Recurrent Reconstruction Neural Network
 
-This repository contains the source codes for the paper [Choy et al., 3D-R2N2: A Unified Approach for Single and Multi-view 3D Object Reconstruction, ECCV 2016](http://arxiv.org/abs/1604.00449). Given one or multiple views of an object, the network generates voxelized ( a voxel is the 3D equivalent of a pixel) reconstruction of the object in 3D.
 
-## Citing this work
-
-If you find this work useful in your research, please consider citing:
-
-```
-@inproceedings{choy20163d,
-  title={3D-R2N2: A Unified Approach for Single and Multi-view 3D Object Reconstruction},
-  author={Choy, Christopher B and Xu, Danfei and Gwak, JunYoung and Chen, Kevin and Savarese, Silvio},
-  booktitle = {Proceedings of the European Conference on Computer Vision ({ECCV})},
-  year={2016}
-}
-```
-
-## News
-
-- [2020-01-25] Using a dense ocupancy grid for 3D reconstruction requires a large amount of memory and computation. We present a new auto-diff library for sparse tensors that can reconstruct objects in high resolution. Please refer to the [3D sparsity pattern reconstruction page](https://stanfordvl.github.io/MinkowskiEngine/demo/sparse_tensor_reconstruction.html) for 3D reconstruction using a sparse tensor.
-
-## Project Page
-
-The project page is available at [http://cvgl.stanford.edu/3d-r2n2/](http://cvgl.stanford.edu/3d-r2n2/).
 
 ## Overview
 
@@ -39,11 +18,9 @@ We can feed in images in random order since the network is trained to be invaria
 ![Networks](imgs/full_network.png)
 *We used two different types of networks for the experiments: a shallow network (top) and a deep residual network (bottom).*
 
-
 ## Results
 
 Please visit the result [visualization page](http://3d-r2n2.stanford.edu/viewer/) to view 3D reconstruction results interactively.
-
 
 ## Datasets
 
@@ -52,7 +29,6 @@ We used [ShapeNet](http://shapenet.cs.stanford.edu) models to generate rendered 
 - ShapeNet rendered images [http://cvgl.stanford.edu/data2/ShapeNetRendering.tgz](http://cvgl.stanford.edu/data2/ShapeNetRendering.tgz)
 - ShapeNet voxelized models [http://cvgl.stanford.edu/data2/ShapeNetVox32.tgz](http://cvgl.stanford.edu/data2/ShapeNetVox32.tgz)
 - Trained ResidualGRUNet Weights [http://cvgl.stanford.edu/data2/ResidualGRUNet.npy](http://cvgl.stanford.edu/data2/ResidualGRUNet.npy)
-
 
 ## Installation
 
@@ -73,12 +49,12 @@ source activate py3-theano
 conda install pygpu
 pip install -r requirements.txt
 ```
+
 - copy the theanorc file to the `$HOME` directory
 
 ```
 cp .theanorc ~/.theanorc
 ```
-
 
 ### Running demo.py
 
@@ -106,7 +82,6 @@ The demo code takes 3 images of the same chair and generates the following recon
 deactivate
 ```
 
-
 ### Training the network
 
 - Activate the virtual environment before you run the experiments.
@@ -133,7 +108,6 @@ tar -xzf ShapeNetVox32.tgz -C ShapeNet/
 
 **Note**: The initial compilation might take awhile if you run the theano for the first time due to various compilations. The problem will not persist for the subsequent runs.
 
-
 ## Using cuDNN
 
 To use `cuDNN` library, you have to download `cuDNN` from the nvidia [website](https://developer.nvidia.com/rdp/cudnn-download). Then, extract the files to any directory and append the directory to the environment variables like the following. Please replace the `/path/to/cuDNN/` to the directory that you extracted `cuDNN`.
@@ -146,13 +120,11 @@ export LIBRARY_PATH=/path/to/cuDNN/lib64:$LD_LIBRARY_PATH
 
 For more details, please refer to [http://deeplearning.net/software/theano/library/sandbox/cuda/dnn.html](http://deeplearning.net/software/theano/library/sandbox/cuda/dnn.html)
 
-
 ## Follow-up Paper
 
 Gwak et al., [Weakly supervised 3D Reconstruction with Adversarial Constraint](https://arxiv.org/abs/1705.10904), [project website](http://cvgl.stanford.edu/mcrecon/)
 
 Supervised 3D reconstruction has witnessed a significant progress through the use of deep neural networks. However, this increase in performance requires large scale annotations of 2D/3D data. In this paper, we explore inexpensive 2D supervision as an alternative for expensive 3D CAD annotation. Specifically, we use foreground masks as weak supervision through a raytrace pooling layer that enables perspective projection and backpropagation. Additionally, since the 3D reconstruction from masks is an ill posed problem, we propose to constrain the 3D reconstruction to the manifold of unlabeled realistic 3D shapes that match mask observations. We demonstrate that learning a log-barrier solution to this constrained optimization problem resembles the GAN objective, enabling the use of existing tools for training GANs. We evaluate and analyze the manifold constrained reconstruction on various datasets for single and multi-view reconstruction of both synthetic and real images.
-
 
 ## License
 
